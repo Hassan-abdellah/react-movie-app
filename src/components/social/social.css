@@ -1,0 +1,21 @@
+.social{
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+.social li{
+    font-size: 1.2rem;
+    background-color: rgba(0,0,212,0.2);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.7s ease-in;
+}
+.social li:hover{
+    box-shadow: 0px 1px 5px rgba(255,255,255,0.7),
+    0px -1px 5px rgba(255,255,255,0.7);
+}

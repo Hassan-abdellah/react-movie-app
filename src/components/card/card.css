@@ -1,0 +1,104 @@
+.card{
+    overflow-y: hidden;
+    position: relative;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.touch-icon{
+    position: absolute;
+    right: 5px;
+    top:5px;
+    font-size: 1.2rem;
+    background-color: rgba(0,0,212,0.2);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000;
+    display: none;
+    transition: all 0.7s ease-in;
+}
+.movie-poster{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+.card:hover .movie-data{
+    transform: translateY(0);
+}
+.card:hover .movie-data::before{
+    transform: scaleX(1);
+}
+.movie-poster img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+.movie-data{
+    position: absolute;
+    padding: 20px 0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    z-index: 10;
+    background-color:rgba(0,0,0,0.4);
+    transform: translateY(200%);
+    transition: transform 1s ease-in-out;
+}
+.movie-data::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255,255,255,0.8);
+    transform-origin: 100%;
+    transform: scaleX(0);
+    transition: transform 0.8s ease-in-out;
+}
+.genres-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+}
+
+@media screen and (max-width:768px) {
+    /* .card:hover .movie-data{
+        transform: translateY(200%);
+    }
+    .card:hover .movie-data::before{
+        transform: scaleX(0);
+    } */
+    .movie-data{
+        padding: 10px 0;
+    }
+    .movie-data h1{
+        font-size: 1rem;
+    }
+    .movie-data .genres-container > *{
+        font-size: 11px;
+    }
+    .touch-icon{
+        display: flex;
+    }
+    .card:hover .movie-data{
+        transform: translateY(200%);
+    }
+    .card:hover .movie-data::before{
+        transform: scaleX(0);
+    }
+    .card .movie-data.active{
+        transform: translateY(0%);
+    }
+    .card .movie-data.active::before{
+        transform: scaleX(1);
+    }
+}
