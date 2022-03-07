@@ -44,7 +44,7 @@ const Navbar = () => {
                             exit={{opacity: 0}}
                             transition={{easings:"ease-in-out",duration:"0.75"}}
                             className="search-result">
-                                {searchResult.length > 0 ?
+                                {searchResult.length > 0 && !isLoading?
                                 searchResult.map((movie, index) => (
                                     <li key={index}>
                                         <Link to={`/movie/${movie.id}`} onClick={() => {setSearchResult([]); setIsSearchActive(false)}}>

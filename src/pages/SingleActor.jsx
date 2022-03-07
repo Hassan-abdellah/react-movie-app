@@ -10,8 +10,8 @@ const SingleActor = () => {
     const [actorDetails, setActorDetails] = useState({});
     const [actorMovies, setActorMovies] = useState([]);
     // const actorMovies = actorDetails?.movie_credits?.cast;
-    const [firstIndex,setFirstIndex] = useState(0);
-    const [lastIndex,setLastIndex] = useState(20);
+    // const [firstIndex,setFirstIndex] = useState(0);
+    // const [lastIndex,setLastIndex] = useState(20);
     useEffect(() => {
         const getActorDetails = async () => {
             setIsLoading(true);
@@ -59,7 +59,7 @@ const SingleActor = () => {
                         <p><span>Job:</span> {actorDetails.known_for_department}</p>
                     </div>
                 </header>
-                <Showcase header={`${actorDetails.name} Movies`} moviescategory={actorMovies.slice(firstIndex,lastIndex)} />
+                <Showcase header={`${actorDetails.name} Movies`} moviescategory={actorMovies.slice(0,20)} />
                 {/* {
                     actorMovies.length > lastIndex - firstIndex && 
                         lastIndex  < actorMovies.length ? 

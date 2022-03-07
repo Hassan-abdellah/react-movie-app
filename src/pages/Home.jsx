@@ -4,8 +4,10 @@ import Spinner from "../components/spinner/Spinner";
 const Home = ({ popularMovies, topMovies, nowMovies, upcomingMovies,setPage,isLoading }) => {
     useEffect(() => {
         document.title = 'Home | Movies APP';
-        setPage(1);
     }, []);
+    useEffect(() => {
+        setPage(1);
+    }, [setPage]);
     if(isLoading){
         return(
             <Spinner/>
