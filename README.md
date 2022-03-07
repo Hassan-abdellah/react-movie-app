@@ -2,7 +2,8 @@
 ##  and React Icons and Framer Motion Animation Package and
 
 With This API [THMD](https://developers.themoviedb.org/3/getting-started/introduction).
-[Live Demo]()
+
+[Live Demo](https://react-thmd-app.netlify.app/)
 ## Available Scripts
 
 In the project directory, you can run:
