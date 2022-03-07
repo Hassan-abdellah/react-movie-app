@@ -37,14 +37,14 @@ const Navbar = () => {
                         <input type="search" id="search" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={() => searchMovie()} required />
                         <label htmlFor="search">🔍 Search Movies...</label>
                         <AnimatePresence>
-                            {query && !isLoading && (
+                            {query && (
                             <motion.ul 
                             initial={{opacity: 0}}
                             animate={{opacity: 1}}
                             exit={{opacity: 0}}
                             transition={{easings:"ease-in-out",duration:"0.75"}}
                             className="search-result">
-                                {searchResult.length > 0 ?
+                                {searchResult.length > 0 &&
                                 searchResult.map((movie, index) => (
                                     <li key={index}>
                                         <Link to={`/movie/${movie.id}`} onClick={() => {setSearchResult([]); setIsSearchActive(false)}}>
@@ -52,10 +52,11 @@ const Navbar = () => {
                                             <h4>{movie.title}<span>({movie?.release_date?.split('-')[0]})</span></h4>
                                         </Link>
                                     </li>
-                                )) : (
-                                    <h1>Loading...</h1>
-                                )
+                                ))
                                 }
+                                {isLoading && (
+                                    <span>Loadding...</span>
+                                )}
                             </motion.ul>
                             )}
                         </AnimatePresence>
