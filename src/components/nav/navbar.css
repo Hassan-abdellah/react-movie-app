@@ -26,7 +26,7 @@
 .input-container{
     position:relative;
     width: 300px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .input-container.overflow{
     overflow: unset;
@@ -66,6 +66,9 @@
 .input-container .search-result{
     position: absolute;
     top:50px;
+    /* top:250px;
+    bottom: 10px;
+    left: 0; */
     color:#000;
     background-color: #fff;
     z-index: 1000;

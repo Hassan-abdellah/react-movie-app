@@ -12,9 +12,13 @@ const Navbar = () => {
     const [isSearchActive,setIsSearchActive] =useState(false);
     const searchMovie = async () => {
         setIsLoading(true);
-        const res = await axios.get(`${process.env.REACT_APP_BASE_URI}/search/movie?api_key=${process.env.REACT_APP_API_KEY}&lang=en&query=${query}`);
-        setIsLoading(false);
-        setSearchResult(res.data.results);
+        try{
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URI}/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${query}`);
+            setSearchResult(res.data.results);
+            setIsLoading(false);
+        }catch(err){
+            console.log(err.message);
+        }
     }
     const inputRef = useRef();
     useEffect(() => {
@@ -34,31 +38,29 @@ const Navbar = () => {
                 <nav className="navbar">
                     <Link to="/" className="logo">Movie App</Link>
                     <div style={{overflow:searchResult.length <= 0 && 'hidden'}}  className={ isSearchActive ? "input-container active" :"input-container"} ref={inputRef}>
-                        <input type="search" id="search" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={() => searchMovie()} required />
+                        <input type="search" id="search" value={query} onChange={(e) => setQuery(e.target.value)} onKeyUp={() => searchMovie()} required />
                         <label htmlFor="search">🔍 Search Movies...</label>
                         <AnimatePresence>
                             {query && (
-                            <motion.ul 
+                             <motion.ul 
                             initial={{opacity: 0}}
                             animate={{opacity: 1}}
                             exit={{opacity: 0}}
                             transition={{easings:"ease-in-out",duration:"0.75"}}
-                            className="search-result">
-                                {searchResult.length > 0 &&
-                                searchResult.map((movie, index) => (
+                             className="search-result">
+                                {!isLoading ?  searchResult.slice(0,10).map((movie, index) => (
                                     <li key={index}>
                                         <Link to={`/movie/${movie.id}`} onClick={() => {setSearchResult([]); setIsSearchActive(false)}}>
                                             <img className='animate-bg' src={`${process.env.REACT_APP_IMAGE_BASE_URI}/${movie.poster_path}`} alt={`${movie.title}-poster`} />
                                             <h4>{movie.title}<span>({movie?.release_date?.split('-')[0]})</span></h4>
                                         </Link>
                                     </li>
-                                ))
+                                )) : (
+                                    <span style={{textAlign: 'center'}}>Loading</span>
+                                )
                                 }
-                                {isLoading && (
-                                    <span>Loadding...</span>
-                                )}
                             </motion.ul>
-                            )}
+                             )}
                         </AnimatePresence>
                     </div>
                     <Social/>
